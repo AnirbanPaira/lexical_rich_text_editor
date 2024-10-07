@@ -22,8 +22,8 @@ import { $generateHtmlFromNodes } from "@lexical/html";
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 
 // Placeholder component for the editor
-function Placeholder() {
-  return <div className='editor-placeholder'>Enter Some rich text...</div>;
+function Placeholder({placeholder}) {
+  return <div className='editor-placeholder'>{placeholder} ...</div>;
 }
 
 // A custom plugin to extract HTML content from the editor
@@ -82,7 +82,7 @@ function Editor({ value, onChange, placeholder, name,onHtmlChange }) {
         <div className='editor-inner'>
           <RichTextPlugin
             contentEditable={<ContentEditable className='editor-input' />} // Where the user writes content
-            placeholder={placeholder ? placeholder : <Placeholder />} // Placeholder for the editor
+            placeholder={<Placeholder placeholder={placeholder} />} // Placeholder for the editor
             ErrorBoundary={LexicalErrorBoundary} // Error boundary for the editor
           />
           <HistoryPlugin /> {/* Undo/redo history plugin */}
@@ -100,11 +100,12 @@ function Editor({ value, onChange, placeholder, name,onHtmlChange }) {
       </div>
 
       {/* Display the extracted HTML content */}
-      <div className="html-output">
-        <h3>Editor Content (HTML):</h3>
-        <pre>{htmlContent}</pre> {/* Render the extracted HTML content */}
+      {/* <div className="html-output"> */}
+        {/* <h3>Editor Content (HTML):</h3> */}
+        {/* <pre>{htmlContent}</pre> */}
+         {/* Render the extracted HTML content */}
   
-      </div>
+      {/* </div> */}
     </LexicalComposer>
   );
 }
